@@ -1,0 +1,59 @@
+{
+  "fixture_id": "jpl-horizons-lunar-site-az-el-2026-11-10",
+  "source_type": "official",
+  "source_name": "NASA/JPL Horizons",
+  "source_url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+  "retrieved_on": "2026-11-10",
+  "purpose": "Parser/provider contract reference only; not a CLPS landing site or candidate.",
+  "request": {
+    "observer_body_id": "301",
+    "coordinate_type": "GEODETIC",
+    "longitude_east_deg": 0.0,
+    "latitude_deg": 0.0,
+    "altitude_km": 0.0,
+    "start_time": "2026-11-10 00:00",
+    "stop_time": "2026-11-10 01:00",
+    "step": "1h",
+    "time_system": "UT",
+    "quantity": "4"
+  },
+  "coordinate_note": "The (0, 0, 0) lunar site is a test coordinate only, not an asserted mission location.",
+  "cases": [
+    {
+      "target_id": "10",
+      "target_name": "Sun",
+      "coordinate_frame": "MEAN_ME (high precision)",
+      "raw_result_excerpt": "Center body name: Moon (301) {source: DE441}\nCenter geodetic : 0.0, 0.0, 0.0 {E-lon(deg),Lat(deg),Alt(km)}\nCenter pole/equ : MEAN_ME (high precision) {East-longitude positive}\n$$SOE\n 2026-Nov-10 00:00  i  108.609341 -85.153524\n 2026-Nov-10 01:00  i  106.872231 -84.669136\n$$EOE",
+      "expected_points": [
+        {
+          "timestamp_iso": "2026-11-10T00:00:00",
+          "azimuth_apparent_deg": 108.609341,
+          "elevation_apparent_deg": -85.153524
+        },
+        {
+          "timestamp_iso": "2026-11-10T01:00:00",
+          "azimuth_apparent_deg": 106.872231,
+          "elevation_apparent_deg": -84.669136
+        }
+      ]
+    },
+    {
+      "target_id": "399",
+      "target_name": "Earth",
+      "coordinate_frame": "MEAN_ME (high precision)",
+      "raw_result_excerpt": "Center body name: Moon (301) {source: DE441}\nCenter geodetic : 0.0, 0.0, 0.0 {E-lon(deg),Lat(deg),Alt(km)}\nCenter pole/equ : MEAN_ME (high precision) {East-longitude positive}\n$$SOE\n 2026-Nov-10 00:00  i   27.562830  82.556826\n 2026-Nov-10 01:00  i   27.315336  82.573506\n$$EOE",
+      "expected_points": [
+        {
+          "timestamp_iso": "2026-11-10T00:00:00",
+          "azimuth_apparent_deg": 27.562830,
+          "elevation_apparent_deg": 82.556826
+        },
+        {
+          "timestamp_iso": "2026-11-10T01:00:00",
+          "azimuth_apparent_deg": 27.315336,
+          "elevation_apparent_deg": 82.573506
+        }
+      ]
+    }
+  ]
+}

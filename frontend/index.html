@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLPS Lunar Mission Browser</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">NASA Space Apps Challenge 2026</p>
+          <h1>CLPS Lunar Mission Browser</h1>
+        </div>
+        <span id="source-badge" class="badge">Synthetic</span>
+      </header>
+
+      <section class="card warning-box">
+        <h2>Data label</h2>
+        <p id="data-label">
+          This interface is using synthetic demo data only. It is not an official NASA result.
+        </p>
+        <div id="health-status" class="status">Checking API health…</div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h3>Site selector</h3>
+          <label for="site-select">Site</label>
+          <select id="site-select"></select>
+
+          <div class="field-row">
+            <div>
+              <label for="source-select">Timeline data source</label>
+              <select id="source-select">
+                <option value="synthetic">Synthetic</option>
+                <option value="reference">Reference snapshot</option>
+                <option value="official">Official API (NASA/JPL Horizons)</option>
+                <option value="horizons">Horizons apparent angles</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="horizons-options" class="horizons-options" hidden>
+            <label for="horizons-step-minutes">Horizons sample step (minutes)</label>
+            <input id="horizons-step-minutes" type="number" min="1" step="1" value="60" />
+            <p>
+              Uses the selected synthetic demo site's coordinates as the lunar observer.
+              They are not verified mission locations.
+            </p>
+          </div>
+
+          <div class="field-row">
+            <div>
+              <label for="start-date">Start date</label>
+              <input id="start-date" type="date" />
+            </div>
+            <div>
+              <label for="end-date">End date</label>
+              <input id="end-date" type="date" />
+            </div>
+          </div>
+
+          <button id="run-analysis" type="button">Load timeline</button>
+        </div>
+
+        <div class="card">
+          <h3>Visibility summary</h3>
+          <div id="summary-box" class="summary-box">
+            Select a site and date range to load the synthetic timeline.
+          </div>
+        </div>
+      </section>
+
+      <section class="card comparison-card">
+        <h3>Multi-site comparison</h3>
+        <p id="comparison-source-label" class="muted">
+          Comparison follows the timeline source where available. Official API uses NASA/JPL Horizons at the selected demo-site coordinates.
+        </p>
+        <label for="comparison-site-select">Compare sites</label>
+        <select id="comparison-site-select" multiple size="4"></select>
+        <button id="run-comparison" type="button">Compare selected sites</button>
+        <div id="comparison-chart" class="comparison-chart"></div>
+        <div class="timeline-legend">
+          <span><i class="legend-swatch above"></i> Above 0°</span>
+          <span><i class="legend-swatch below"></i> At/below 0°</span>
+          <span><i class="legend-swatch mixed"></i> Mixed within hour</span>
+          <span><i class="legend-swatch unknown"></i> No valid coverage</span>
+        </div>
+        <div id="visibility-timeline" class="visibility-timeline"></div>
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Site</th>
+                <th>Sun center above 0°</th>
+                <th>Longest Sun below 0°</th>
+                <th>Earth center above 0°</th>
+                <th>Longest Earth center below 0°</th>
+                <th>Valid samples</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-table-body">
+              <tr>
+                <td colspan="6" class="muted">Choose at least two sites to compare.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card timeline-card">
+        <h3 id="timeline-heading">Synthetic demo timeline</h3>
+        <p id="timeline-note" class="muted"></p>
+        <div class="timeline-scroll-window" role="region" aria-label="Timeline samples" tabindex="0">
+          <ul id="timeline" class="timeline"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
